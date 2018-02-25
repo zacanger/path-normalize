@@ -1,3 +1,5 @@
+const decode = require('zeelib/lib/safe-decode-uri-component').default
+
 const SLASH = 47
 const DOT = 46
 
@@ -72,12 +74,10 @@ const posixNormalize = (path, allowAboveRoot) => {
   return res
 }
 
-const handleTraversal = (path) => {
-  // handle url encoding here
-  // handle any amount of .../ type shit here
-  // fix windows slashes here?
-  return path
-}
+// handle any amount of .../ type shit here
+// fix windows slashes here?
+const handleTraversal = (path) =>
+  decode(path)
 
 const normalize = (p) => {
   assertPath(p)
