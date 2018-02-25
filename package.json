@@ -1,6 +1,6 @@
 {
   "name": "path-normalize",
-  "description": "path-normalize",
+  "description": "path.normalize for non-Node environments",
   "version": "0.0.1",
   "author": {
     "name": "Zac Anger",
@@ -20,7 +20,8 @@
   },
   "bugs": "https://github.com/zacanger/path-normalize/issues",
   "keywords": [
-    "",
+    "normalize",
+    "path",
     "path-normalize"
   ],
   "dependencies": {},
