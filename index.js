@@ -1,9 +1,9 @@
-const CHAR_FORWARD_SLASH = 47 /* / */
-const CHAR_DOT = 46 /* . */
+const SLASH = 47
+const DOT = 46
 
 const assertPath = (path) => {
   if (typeof path !== 'string') {
-    throw new TypeError('Expected a string!')
+    throw new TypeError('The "path" argument must be of type string')
   }
 }
 
@@ -15,15 +15,15 @@ const normalizeString = (path, allowAboveRoot) => {
   let code
   for (let i = 0; i <= path.length; ++i) {
     if (i < path.length) code = path.charCodeAt(i)
-    else if (code === CHAR_FORWARD_SLASH) break
-    else code = CHAR_FORWARD_SLASH
-    if (code === CHAR_FORWARD_SLASH) {
+    else if (code === SLASH) break
+    else code = SLASH
+    if (code === SLASH) {
       if (lastSlash === i - 1 || dots === 1) {
         // NOOP
       } else if (lastSlash !== i - 1 && dots === 2) {
         if (res.length < 2 || lastSegmentLength !== 2 ||
-            res.charCodeAt(res.length - 1) !== CHAR_DOT ||
-            res.charCodeAt(res.length - 2) !== CHAR_DOT) {
+            res.charCodeAt(res.length - 1) !== DOT ||
+            res.charCodeAt(res.length - 2) !== DOT) {
           if (res.length > 2) {
             const lastSlashIndex = res.lastIndexOf('/')
             if (lastSlashIndex !== res.length - 1) {
@@ -61,12 +61,13 @@ const normalizeString = (path, allowAboveRoot) => {
       }
       lastSlash = i
       dots = 0
-    } else if (code === CHAR_DOT && dots !== -1) {
+    } else if (code === DOT && dots !== -1) {
       ++dots
     } else {
       dots = -1
     }
   }
+
   return res
 }
 
@@ -75,8 +76,8 @@ const normalize = (p) => {
 
   let path = p
   if (path.length === 0) return '.'
-  const isAbsolute = path.charCodeAt(0) === CHAR_FORWARD_SLASH
-  const trailingSeparator = path.charCodeAt(path.length - 1) === CHAR_FORWARD_SLASH
+  const isAbsolute = path.charCodeAt(0) === SLASH
+  const trailingSeparator = path.charCodeAt(path.length - 1) === SLASH
 
   path = normalizeString(path, !isAbsolute)
 
