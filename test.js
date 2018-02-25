@@ -22,6 +22,6 @@ test('normalize', (t) => {
   t.equal(normalize('../.../../foobar/../../../bar/../../baz'), '../../../../baz')
 
   t.equal(normalize(''), '.')
-  t.throws(() => normalize(1), /The "path" argument must be of type string/)
+  t.throws(() => normalize(1), /Expected a string, got a number/)
   t.end()
 })

@@ -2,12 +2,13 @@ const SLASH = 47
 const DOT = 46
 
 const assertPath = (path) => {
-  if (typeof path !== 'string') {
-    throw new TypeError('The "path" argument must be of type string')
+  const t = typeof path
+  if (t !== 'string') {
+    throw new TypeError(`Expected a string, got a ${t}`)
   }
 }
 
-const normalizeString = (path, allowAboveRoot) => {
+const posixNormalize = (path, allowAboveRoot) => {
   let res = ''
   let lastSegmentLength = 0
   let lastSlash = -1
@@ -71,15 +72,24 @@ const normalizeString = (path, allowAboveRoot) => {
   return res
 }
 
+const handleTraversal = (path) => {
+  // handle url encoding here
+  // handle any amount of .../ type shit here
+  // fix windows slashes here?
+  return path
+}
+
 const normalize = (p) => {
   assertPath(p)
 
   let path = p
   if (path.length === 0) return '.'
+
   const isAbsolute = path.charCodeAt(0) === SLASH
   const trailingSeparator = path.charCodeAt(path.length - 1) === SLASH
 
-  path = normalizeString(path, !isAbsolute)
+  path = handleTraversal(path)
+  path = posixNormalize(path, !isAbsolute)
 
   if (path.length === 0 && !isAbsolute) path = '.'
   if (path.length > 0 && trailingSeparator) path += '/'
