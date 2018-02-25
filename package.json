@@ -10,6 +10,8 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
+    "cover": "nyc npm run test:tape",
+    "preversion": "npm run test:lint && npm run cover",
     "test": "npm run test:lint && npm run test:tape",
     "test:lint": "eslint -c .eslintrc.json index.js test.js",
     "test:tape": "tape test.js | tap-spec"
@@ -34,11 +36,24 @@
     "eslint-plugin-import": "2.9.0",
     "eslint-plugin-promise": "3.6.0",
     "eslint-plugin-unicorn": "4.0.2",
+    "nyc": "11.4.1",
     "tap-spec": "4.1.1",
     "tape": "4.9.0"
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "nyc": {
+    "include": [
+      "index.js"
+    ],
+    "sourceMap": true,
+    "instrument": true,
+    "reporter": [
+      "text",
+      "html",
+      "json"
+    ]
   },
   "typings": "index.d.ts"
 }
