@@ -1,6 +1,6 @@
 {
   "name": "path-normalize",
-  "description": "path.normalize for non-Node environments",
+  "description": "path.normalize for the browser",
   "version": "0.1.0",
   "author": {
     "name": "Zac Anger",
@@ -10,8 +10,9 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "test": ""
+    "test": "npm run test:lint && npm run test:tape",
+    "test:lint": "eslint -c .eslintrc.json index.js test.js",
+    "test:tape": "tape test.js | tap-spec"
   },
   "homepage": "https://github.com/zacanger/path-normalize#readme",
   "repository": {
@@ -25,7 +26,17 @@
     "path-normalize"
   ],
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "8.2.2",
+    "eslint": "4.18.1",
+    "eslint-config-jane": "0.11.1",
+    "eslint-plugin-babel": "4.1.2",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-promise": "3.6.0",
+    "eslint-plugin-unicorn": "4.0.2",
+    "tap-spec": "4.1.1",
+    "tape": "4.9.0"
+  },
   "engines": {
     "node": ">=8.0.0"
   }
