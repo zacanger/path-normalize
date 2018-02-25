@@ -25,7 +25,6 @@ const normal = (somePath) => normalize(somePath)
 ## Todo
 
 * Strip/ignore `..`
-* Handle encoded strings
 * Make the code not shit
 
 ## License
