@@ -10,6 +10,7 @@ const assertPath = (path) => {
   }
 }
 
+// this function is directly from node source
 const posixNormalize = (path, allowAboveRoot) => {
   let res = ''
   let lastSegmentLength = 0
