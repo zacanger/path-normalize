@@ -1,9 +1,14 @@
 # path-normalize
 
-`path.normalize` for the browser. This is different from
+`path.normalize` for the browser.
+
+`path-normalize` is different from
 [normalize-path](http://npm.im/normalize-path); `normalize-path` only handles
-slashes, while this lib is a browser-focused copy of the POSIX `path.normalize`
+slashes, while this lib is a browser-focused version of the POSIX `path.normalize`
 in Node.
+
+`path-normalize` also differs from Node's `path.normalize`. `path-normalize`
+handles uri-encoded strings and strips directory traversals (`../`).
 
 Portions of this code are heavily based on
 [code](https://github.com/nodejs/node/blob/b404aa56c0e776c9722017ca020f9d04c7aa6de2/lib/path.js#L1182)
