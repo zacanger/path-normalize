@@ -27,6 +27,22 @@ const normalize = require('path-normalize')
 const normal = (somePath) => normalize(somePath)
 ```
 
+Slightly more real-world example:
+
+```javascript
+import normalize from 'path-normalize'
+
+// imaginary client-side router api
+router.route('/foo/*', (pathname) => {
+  const normalized = normalize(pathname)
+  if (normalized !== pathname) {
+    router.redirect(normalized)
+  } else {
+    renderFoo()
+  }
+})
+```
+
 ## Todo
 
 * Strip/ignore `..`
