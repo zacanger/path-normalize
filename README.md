@@ -46,6 +46,7 @@ router.route('/foo/*', (pathname) => {
 ## Todo
 
 * Make the code not shit
+* Handle windows shit?
 
 ## License
 
