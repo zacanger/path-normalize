@@ -1,5 +1,3 @@
-const decode = require('zeelib/lib/safe-decode-uri-component').default
-
 const SLASH = 47
 const DOT = 46
 
@@ -73,6 +71,14 @@ const posixNormalize = (path, allowAboveRoot) => {
   }
 
   return res
+}
+
+const decode = (s) => {
+  try {
+    return decodeURIComponent(s)
+  } catch (_) {
+    return s
+  }
 }
 
 const stripDots = (path) =>

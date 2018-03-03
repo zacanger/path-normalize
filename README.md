@@ -1,6 +1,6 @@
 # path-normalize
 
-`path.normalize` for the browser.
+Zero-dependency browser-oriented `path.normalize`.
 
 `path-normalize` is different from
 [normalize-path](http://npm.im/normalize-path); `normalize-path` only handles

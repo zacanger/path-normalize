@@ -27,9 +27,7 @@
     "path",
     "path-normalize"
   ],
-  "dependencies": {
-    "zeelib": "6.1.6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-eslint": "8.2.2",
     "eslint": "4.18.2",
