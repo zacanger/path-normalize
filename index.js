@@ -89,7 +89,7 @@ const normalize = (p) => {
   assertPath(p)
 
   const path = p
-  if (path.length === 0) return '.'
+  if (path.length === 0) return '/'
 
   const isAbsolute = path.charCodeAt(0) === SLASH
   const trailingSeparator = path.charCodeAt(path.length - 1) === SLASH
