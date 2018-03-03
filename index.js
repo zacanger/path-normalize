@@ -75,10 +75,16 @@ const posixNormalize = (path, allowAboveRoot) => {
   return res
 }
 
+const stripDots = (path) =>
+  path
+    .split('/')
+    .filter((s) => !/^\.{2,}$/.test(s))
+    .join('/')
+
 // handle any amount of .../ type shit here
 // fix windows slashes here?
 const handleTraversal = (path) =>
-  decode(path)
+  stripDots(decode(path))
 
 const normalize = (p) => {
   assertPath(p)
