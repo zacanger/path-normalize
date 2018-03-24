@@ -46,11 +46,6 @@ router.route('/foo/*', (pathname) => {
 See also:
 [react-router-path-normalize](https://www.npmjs.com/package/react-router-path-normalize).
 
-## Todo
-
-* Make the code not shit
-* Handle windows shit?
-
 ## License
 
 [MIT](./LICENSE.md)

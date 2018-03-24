@@ -22,7 +22,7 @@ const assertPath = (path) => {
   }
 }
 
-// this function is directly from node source, and it grosses me out
+// this function is directly from node source
 const posixNormalize = (path) => {
   let res = ''
   let lastSegmentLength = 0
