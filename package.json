@@ -8,13 +8,18 @@
     "url": "http://zacanger.com"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
+    "build": "babel src/index.js --out-file lib/index.js",
     "cover": "nyc npm run test:tape",
-    "preversion": "npm run test:lint && npm run cover",
+    "prebuild": "npm run test:lint && npm run cover",
+    "preversion": "npm run build",
     "test": "npm run test:lint && npm run test:tape",
     "test:lint": "eslint -c .eslintrc.json index.js test.js",
-    "test:tape": "tape test.js | tap-spec"
+    "test:tape": "babel-tape-runner src/test.js | tap-spec"
   },
   "homepage": "https://github.com/zacanger/path-normalize#readme",
   "repository": {
@@ -29,7 +34,10 @@
   ],
   "dependencies": {},
   "devDependencies": {
+    "babel-cli": "6.26.0",
     "babel-eslint": "8.2.2",
+    "babel-preset-env": "1.6.1",
+    "babel-tape-runner": "2.0.1",
     "eslint": "4.19.1",
     "eslint-config-jane": "1.1.2",
     "eslint-plugin-babel": "4.1.2",

@@ -1,5 +1,5 @@
-const test = require('tape')
-const normalize = require('.')
+import test from 'tape'
+import normalize from '.'
 
 test('normalize', (t) => {
   t.equal(normalize('./foo///b/../b/c.js'), 'foo/b/b/c.js')

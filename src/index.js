@@ -103,4 +103,4 @@ const normalize = (p) => {
   return normalized
 }
 
-module.exports = normalize
+export default normalize
