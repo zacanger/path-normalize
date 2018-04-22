@@ -10,7 +10,8 @@
   "license": "MIT",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "index.d.ts"
   ],
   "scripts": {
     "build": "babel src/index.js --out-file lib/index.js",
