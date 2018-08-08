@@ -15,8 +15,9 @@
   ],
   "scripts": {
     "build": "babel src/index.js --out-file lib/index.js",
+    "clean": "rm -rf lib && mkdir -p lib",
     "cover": "nyc npm run test:tape",
-    "prebuild": "npm run test:lint && npm run cover",
+    "prebuild": "npm run test:lint && npm run cover && npm run clean",
     "preversion": "npm run build",
     "test": "npm run test:lint && npm run test:tape",
     "test:lint": "eslint -c .eslintrc.json index.js test.js",
