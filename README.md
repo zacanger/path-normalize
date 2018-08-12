@@ -10,9 +10,9 @@ slashes, while this lib is a browser-focused version of the POSIX `path.normaliz
 in Node.
 
 `path-normalize` also differs from Node's `path.normalize`. `path-normalize`
-handles uri-encoded strings ~~and strips directory traversals (`../`)~~.
+handles uri-encoded strings.
 
-Portions of this code are heavily based on
+MOst of this code is heavily based on
 [code](https://github.com/nodejs/node/blob/b404aa56c0e776c9722017ca020f9d04c7aa6de2/lib/path.js#L1182)
 in Node.
 
@@ -45,15 +45,8 @@ router.route('/foo/*', (pathname) => {
 })
 ```
 
-<<<<<<< HEAD
 See also:
 [react-router-path-normalize](https://www.npmjs.com/package/react-router-path-normalize).
-=======
-## Todo
-
-* Strip/ignore `..`
-* Make the code not shit
->>>>>>> parent of 232d23c... Handle ../../
 
 ## License
 
