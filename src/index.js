@@ -1,20 +1,6 @@
 const SLASH = 47
 const DOT = 46
 
-const handleTraversal = (path) =>
-  path
-    .split('/')
-    .filter((s) => !/^\.{2,}$/.test(s))
-    .join('/')
-
-const safeDecode = (s) => {
-  try {
-    return decodeURIComponent(s)
-  } catch (_) {
-    return s
-  }
-}
-
 const assertPath = (path) => {
   const t = typeof path
   if (t !== 'string') {
@@ -23,13 +9,12 @@ const assertPath = (path) => {
 }
 
 // this function is directly from node source
-const posixNormalize = (path) => {
+const posixNormalize = (path, allowAboveRoot) => {
   let res = ''
   let lastSegmentLength = 0
   let lastSlash = -1
   let dots = 0
   let code
-
   for (let i = 0; i <= path.length; ++i) {
     if (i < path.length) code = path.charCodeAt(i)
     else if (code === SLASH) break
@@ -38,11 +23,9 @@ const posixNormalize = (path) => {
       if (lastSlash === i - 1 || dots === 1) {
         // NOOP
       } else if (lastSlash !== i - 1 && dots === 2) {
-        if (
-          res.length < 2 || lastSegmentLength !== 2 ||
-          res.charCodeAt(res.length - 1) !== DOT ||
-          res.charCodeAt(res.length - 2) !== DOT
-        ) {
+        if (res.length < 2 || lastSegmentLength !== 2 ||
+            res.charCodeAt(res.length - 1) !== DOT ||
+            res.charCodeAt(res.length - 2) !== DOT) {
           if (res.length > 2) {
             const lastSlashIndex = res.lastIndexOf('/')
             if (lastSlashIndex !== res.length - 1) {
@@ -65,6 +48,11 @@ const posixNormalize = (path) => {
             continue
           }
         }
+        if (allowAboveRoot) {
+          if (res.length > 0) res += '/..'
+          else res = '..'
+          lastSegmentLength = 2
+        }
       } else {
         if (res.length > 0) {
           res += '/' + path.slice(lastSlash + 1, i)
@@ -85,22 +73,42 @@ const posixNormalize = (path) => {
   return res
 }
 
+const decode = (s) => {
+  try {
+    return decodeURIComponent(s)
+  } catch (_) {
+    return s
+  }
+}
+
+const stripDots = (path) =>
+  path
+    .split('/')
+    .filter((s) => !/^\.{2,}$/.test(s))
+    .join('/')
+
+// handle any amount of .../ type shit here
+// fix windows slashes here?
+const handleTraversal = (path) =>
+  stripDots(decode(path))
+
 const normalize = (p) => {
   assertPath(p)
 
-  const path = p
-  if (path.length === 0) return '/'
+  let path = p
+  if (path.length === 0) return '.'
 
   const isAbsolute = path.charCodeAt(0) === SLASH
   const trailingSeparator = path.charCodeAt(path.length - 1) === SLASH
 
-  let normalized = posixNormalize(handleTraversal(safeDecode((path))))
+  path = handleTraversal(path)
+  path = posixNormalize(path, !isAbsolute)
 
-  if (normalized.length === 0 && !isAbsolute) normalized = '.'
-  if (normalized.length > 0 && trailingSeparator) normalized += '/'
-  if (isAbsolute) return '/' + normalized
+  if (path.length === 0 && !isAbsolute) path = '.'
+  if (path.length > 0 && trailingSeparator) path += '/'
+  if (isAbsolute) return '/' + path
 
-  return normalized
+  return path
 }
 
 export default normalize
