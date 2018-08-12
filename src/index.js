@@ -81,17 +81,6 @@ const decode = (s) => {
   }
 }
 
-const stripDots = (path) =>
-  path
-    .split('/')
-    .filter((s) => !/^\.{2,}$/.test(s))
-    .join('/')
-
-// handle any amount of .../ type shit here
-// fix windows slashes here?
-const handleTraversal = (path) =>
-  stripDots(decode(path))
-
 const normalize = (p) => {
   assertPath(p)
 
@@ -101,7 +90,7 @@ const normalize = (p) => {
   const isAbsolute = path.charCodeAt(0) === SLASH
   const trailingSeparator = path.charCodeAt(path.length - 1) === SLASH
 
-  path = handleTraversal(path)
+  path = decode(path)
   path = posixNormalize(path, !isAbsolute)
 
   if (path.length === 0 && !isAbsolute) path = '.'
