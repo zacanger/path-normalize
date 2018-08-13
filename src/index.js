@@ -1,3 +1,4 @@
+/* eslint-disable max-depth, max-statements, complexity, max-lines-per-function */
 const SLASH = 47
 const DOT = 46
 
