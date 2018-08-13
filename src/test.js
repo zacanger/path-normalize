@@ -1,6 +1,7 @@
 import test from 'tape'
 import normalize from '.'
 
+// eslint-disable-next-line max-statements
 test('normalize', (t) => {
   t.equal(normalize('./fixtures///b/../b/c.js'), 'fixtures/b/c.js')
   t.equal(normalize('/foo/../../../bar'), '/bar')
@@ -15,11 +16,12 @@ test('normalize', (t) => {
   t.equal(normalize('bar/foo../'), 'bar/foo../')
   t.equal(normalize('bar/foo..'), 'bar/foo..')
   t.equal(normalize('../foo../../../bar'), '../../bar')
-  t.equal(normalize('../.../.././.../../../bar'), '../../bar')
+  t.equal(normalize('../../.././../../../bar'), '../../../../../../bar')
   t.equal(normalize('../../../foo/../../../bar'), '../../../../../bar')
   t.equal(normalize('../../../foo/../../../bar/../../'), '../../../../../../')
   t.equal(normalize('../foobar/barfoo/foo/../../../bar/../../'), '../../')
-  t.equal(normalize('../.../../foobar/../../../bar/../../baz'), '../../../../baz')
+  t.equal(normalize('../../../foobar/../../../bar/../../baz'), '../../../../../../baz')
+  t.equal(normalize('/../../../foobar/../../../bar/../../baz'), '/baz')
   t.throws(() => normalize(1), /Expected a string, got a number/)
   t.end()
 })
