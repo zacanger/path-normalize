@@ -63,5 +63,10 @@
     ],
     "sourceMap": true
   },
-  "typings": "index.d.ts"
+  "typings": "index.d.ts",
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/zacanger"
+  }
+
 }
