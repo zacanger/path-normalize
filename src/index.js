@@ -16,17 +16,26 @@ const posixNormalize = (path, allowAboveRoot) => {
   let lastSlash = -1
   let dots = 0
   let code
+
+  // eslint-disable-next-line fp/no-loops
   for (let i = 0; i <= path.length; ++i) {
-    if (i < path.length) code = path.charCodeAt(i)
-    else if (code === SLASH) break
-    else code = SLASH
+    if (i < path.length) {
+      code = path.charCodeAt(i)
+    } else if (code === SLASH) {
+      break
+    } else {
+      code = SLASH
+    }
     if (code === SLASH) {
       if (lastSlash === i - 1 || dots === 1) {
         // NOOP
       } else if (lastSlash !== i - 1 && dots === 2) {
-        if (res.length < 2 || lastSegmentLength !== 2 ||
-            res.charCodeAt(res.length - 1) !== DOT ||
-            res.charCodeAt(res.length - 2) !== DOT) {
+        if (
+          res.length < 2 ||
+          lastSegmentLength !== 2 ||
+          res.charCodeAt(res.length - 1) !== DOT ||
+          res.charCodeAt(res.length - 2) !== DOT
+        ) {
           if (res.length > 2) {
             const lastSlashIndex = res.lastIndexOf('/')
             if (lastSlashIndex !== res.length - 1) {
@@ -50,8 +59,11 @@ const posixNormalize = (path, allowAboveRoot) => {
           }
         }
         if (allowAboveRoot) {
-          if (res.length > 0) res += '/..'
-          else res = '..'
+          if (res.length > 0) {
+            res += '/..'
+          } else {
+            res = '..'
+          }
           lastSegmentLength = 2
         }
       } else {
@@ -86,7 +98,9 @@ const normalize = (p) => {
   assertPath(p)
 
   let path = p
-  if (path.length === 0) return '.'
+  if (path.length === 0) {
+    return '.'
+  }
 
   const isAbsolute = path.charCodeAt(0) === SLASH
   const trailingSeparator = path.charCodeAt(path.length - 1) === SLASH
@@ -94,9 +108,15 @@ const normalize = (p) => {
   path = decode(path)
   path = posixNormalize(path, !isAbsolute)
 
-  if (path.length === 0 && !isAbsolute) path = '.'
-  if (path.length > 0 && trailingSeparator) path += '/'
-  if (isAbsolute) return '/' + path
+  if (path.length === 0 && !isAbsolute) {
+    path = '.'
+  }
+  if (path.length > 0 && trailingSeparator) {
+    path += '/'
+  }
+  if (isAbsolute) {
+    return '/' + path
+  }
 
   return path
 }

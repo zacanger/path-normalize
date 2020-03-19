@@ -20,7 +20,10 @@ test('normalize', (t) => {
   t.equal(normalize('../../../foo/../../../bar'), '../../../../../bar')
   t.equal(normalize('../../../foo/../../../bar/../../'), '../../../../../../')
   t.equal(normalize('../foobar/barfoo/foo/../../../bar/../../'), '../../')
-  t.equal(normalize('../../../foobar/../../../bar/../../baz'), '../../../../../../baz')
+  t.equal(
+    normalize('../../../foobar/../../../bar/../../baz'),
+    '../../../../../../baz'
+  )
   t.equal(normalize('/../../../foobar/../../../bar/../../baz'), '/baz')
   t.throws(() => normalize(1), /Expected a string, got a number/)
   t.end()

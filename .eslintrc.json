@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:zacanger/recommended",
+    "plugin:zacanger/node",
+    "plugin:zacanger/prettier"
+  ],
+  "plugins": [
+    "zacanger"
+  ],
+  "rules": {
+    "fp/no-unused-expression": 0,
+    "fp/no-let": 0,
+    "fp/no-mutation": 0,
+    "fp/no-nil": 0
+  }
+}
