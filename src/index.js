@@ -89,7 +89,7 @@ const posixNormalize = (path, allowAboveRoot) => {
 const decode = (s) => {
   try {
     return decodeURIComponent(s)
-  } catch (_) {
+  } catch {
     return s
   }
 }
