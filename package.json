@@ -1,7 +1,7 @@
 {
   "name": "path-normalize",
   "description": "Zero-dependency browser-oriented path.normalize",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "author": {
     "email": "zac@zacanger.com",
     "name": "Zac Anger",
