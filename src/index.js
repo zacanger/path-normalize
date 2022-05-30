@@ -17,7 +17,6 @@ const posixNormalize = (path, allowAboveRoot) => {
   let dots = 0
   let code
 
-  // eslint-disable-next-line fp/no-loops
   for (let i = 0; i <= path.length; ++i) {
     if (i < path.length) {
       code = path.charCodeAt(i)
