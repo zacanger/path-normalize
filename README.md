@@ -6,8 +6,8 @@ Zero-dependency browser-oriented `path.normalize`.
 
 `path-normalize` is different from
 [normalize-path](http://npm.im/normalize-path); `normalize-path` only handles
-slashes, while this lib is a browser-focused version of the POSIX `path.normalize`
-in Node.
+slashes, while this lib is a browser-focused version of the POSIX
+`path.normalize` in Node.
 
 `path-normalize` also differs from Node's `path.normalize`. `path-normalize`
 handles uri-encoded strings.
@@ -42,8 +42,5 @@ router.route('/foo/*', (pathname) => {
   }
 })
 ```
-
-See also:
-[react-router-path-normalize](https://www.npmjs.com/package/react-router-path-normalize).
 
 [LICENSE](./LICENSE.md)
